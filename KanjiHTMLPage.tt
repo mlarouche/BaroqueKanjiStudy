@@ -1,0 +1,96 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".txt" #>
+<html>
+    <header>
+        <meta charset="utf-8">
+        <title><#=PageTitle#></title>
+    </header>
+    <style>
+        table, th, td
+        {
+            border: 1px solid black;
+            border-collapse: collapse;
+            font-family: 'Source Hans Serif';
+            font-size: 14pt;
+            margin-bottom: 10pt;
+        }
+
+        table
+        {
+            page-break-inside: avoid;
+        }
+
+        .kanji
+        {
+            font-size: 48pt;
+        }
+
+        .kanjisample
+        {
+            color: grey;
+            font-size: 36pt;
+            width: 36pt;
+        }
+
+        .clearkanji
+        {
+            color: transparent;
+            font-size: 36pt;
+            width: 36pt;
+        }
+
+        .yomi
+        {
+            background-color: gray;
+        }
+
+        .phrases
+        {
+            height: 32pt;
+        }
+    </style>
+    <body>
+<#
+    foreach(var entry in Kanjis) {
+#>
+    <table>
+            <tr>
+                <td rowspan="2">
+                    <object data="kanjisvg/<#=entry.SVGFileName#>" type="image/svg+xml" width="96px" height="96px" />
+                </td>
+                <td colspan="3"><#=entry.Meanings#></td>
+                <td class="yomi" colspan="2">くんよみ</td>
+                <td colspan="3"><#=entry.Kunyomis#></td>
+                <td class="yomi" colspan="2">おんよみ</td>
+                <td colspan="3"><#=entry.Onyomis#></td>
+            </tr>
+            <tr>
+                <td class="kanjisample"><#=entry.Kanji#></td>
+                <td class="kanjisample"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+                <td class="clearkanji"><#=entry.Kanji#></td>
+            </tr>
+            <tr>
+                <td class="phrases" colspan="15"></td>
+            </tr>
+            <tr>
+                <td class="phrases" colspan="15"></td>
+            </tr>
+        </table>
+<#
+    }
+#>
+    </body>
+</html>
