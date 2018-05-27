@@ -243,3 +243,8 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+kanjidic2\.xml
+
+out/
+
+zelda3_kanjis\.txt
