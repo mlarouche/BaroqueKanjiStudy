@@ -12,6 +12,8 @@ namespace BaroqueKanjiStudy
         public int Grade { get; set; }
         public int JLPT { get; set; }
 
+        public int Ranking { get; set; }
+
         public string SVGFileName
         {
             get

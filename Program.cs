@@ -53,6 +53,16 @@ namespace BaroqueKanjiStudy
                         entry.JLPT = int.Parse(jltpElement.Value);
                     }
 
+                    foreach (var dicRectElement in character.Descendants("dic_ref"))
+                    {
+                        var dr_type = dicRectElement.Attribute("dr_type");
+                        if (dr_type != null && dr_type.Value == "heisig")
+                        {
+                            entry.Ranking = int.Parse(dicRectElement.Value);
+                            break;
+                        }
+                    }
+
                     foreach(var meaningElement in character.Descendants("meaning"))
                     {
                         if (!meaningElement.HasAttributes)
@@ -129,6 +139,8 @@ namespace BaroqueKanjiStudy
                     list.AddRange(entries.Values.Where(x => x.JLPT == jlpt.Value));
                 }
             }
+
+            list.Sort((x, y) => x.Ranking - y.Ranking);
 
             KanjiHTMLPage htmlPage = new KanjiHTMLPage();
             htmlPage.PageTitle = !string.IsNullOrEmpty(pageTitle) ? pageTitle : defaultTitle;
