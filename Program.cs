@@ -1,10 +1,8 @@
 ﻿using NDesk.Options.Fork;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace BaroqueKanjiStudy
@@ -116,7 +114,10 @@ namespace BaroqueKanjiStudy
                             KanjiEntry result = null;
                             if (entries.TryGetValue(kanji, out result))
                             {
-                                list.Add(result);
+                                if (!grade.HasValue || (grade.HasValue && result.Grade >= grade.Value))
+                                {
+                                    list.Add(result);
+                                }
                             }
                         }
                     }
